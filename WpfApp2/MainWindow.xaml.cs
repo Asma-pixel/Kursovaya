@@ -31,6 +31,7 @@ namespace WpfApp2
         private void BtnClickBack(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.GoBack();
+          
         }
 
         private void MainFrameRendered(object sender, EventArgs e)

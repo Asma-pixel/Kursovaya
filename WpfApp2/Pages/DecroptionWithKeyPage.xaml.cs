@@ -29,7 +29,6 @@ namespace WpfApp2.Pages
         {
             byte[] arr = Encoding.Unicode.GetBytes(decryptString.Text);
             int key = Convert.ToInt32(decryptKey.Text);
-            encryptedTextValue.Text = Cezar.Encrypt(arr, key);
             encryptedTextValue.Visibility = Visibility.Visible;
             encryptedTextBoxDescription.Visibility = Visibility.Visible;
         }

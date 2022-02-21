@@ -10,7 +10,19 @@
       Background="#ffff"
       >
     <Grid>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="62*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  HorizontalAlignment="Right">
+            <TextBlock Text="Выбирете  язык строки для шифрования: " Margin="0 0 20 0" VerticalAlignment="Center"></TextBlock>
+            <ComboBox SelectionChanged="SelectLang" Name="languageCB" VerticalAlignment="Center" Margin="0 0 20 0" Background="#ADECED"  BorderBrush="#ADECED" >
+                <ComboBoxItem   IsSelected="True" Content="RU"></ComboBoxItem>
+                <ComboBoxItem  Content="EN"></ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
@@ -23,14 +35,14 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="Строка для шифрования:" Margin="0 0 20 0" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBox Name="encryptString" Width="250"   Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Height="33" BorderThickness="0.8"></TextBox>
+                <TextBox PreviewTextInput="TextInputString"  Name="encryptString" Width="250"   Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Height="33" BorderThickness="0.8"></TextBox>
                 <Button VerticalContentAlignment="Top" Content="..." Name="btnFindString" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="33" Width="35" Padding="0" Margin="0" BorderThickness="0.8" BorderBrush="Gray" Click="BtnClickInputStringFromFile" >
                 </Button>
 
             </StackPanel>
 
-            <TextBlock Text="Ключ:" Grid.Row="1" Margin="0 0 20 0"  VerticalAlignment="Center" HorizontalAlignment="Left"  ></TextBlock>
-            <TextBox Name="encryptKey" Width="70"   Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBox>
+            <TextBlock   Text="Ключ:" Grid.Row="1" Margin="0 0 20 0"  VerticalAlignment="Center" HorizontalAlignment="Left"  ></TextBlock>
+            <TextBox PreviewTextInput ="TextInputKey" Name="encryptKey" Width="70"   Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBox>
 
             <TextBlock Visibility="Hidden" Name="encryptedTextBoxDescription" Text="Зашифрованная строка: " Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
             <TextBox IsReadOnly="True" BorderThickness="0" Visibility="Hidden"  Name="encryptedTextValue"   Grid.Row="2" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Left"></TextBox>
@@ -41,7 +53,7 @@
                     <TextBlock Text="сохранением в файл"></TextBlock>
                 </StackPanel>
             </Button>
-            <Button Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0" Height="70"  Padding="5" Click="BtnClickEncryptWithOutSave">
+            <Button  Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0" Height="70"  Padding="5" Click="BtnClickEncryptWithOutSave">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                     <TextBlock TextAlignment="Center" Text="Зашифровать без"></TextBlock>
                     <TextBlock Text="сохранения в файл"></TextBlock>
