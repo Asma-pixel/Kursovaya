@@ -24,7 +24,7 @@
             <TextBlock Text="Строка для шифрования:" Margin="0 0 20 0" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBox Name="encryptString" Width="250"   Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Height="33" BorderThickness="0.8"></TextBox>
-                <Button VerticalContentAlignment="Top" Content="..." Name="btnFindString" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="33" Width="35" Padding="0" Margin="0" BorderThickness="0.8" BorderBrush="Gray" >
+                <Button VerticalContentAlignment="Top" Content="..." Name="btnFindString" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="33" Width="35" Padding="0" Margin="0" BorderThickness="0.8" BorderBrush="Gray" Click="BtnClickInputStringFromFile" >
                 </Button>
 
             </StackPanel>

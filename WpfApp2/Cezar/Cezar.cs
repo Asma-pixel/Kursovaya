@@ -17,13 +17,13 @@ namespace WpfApp2
             {
                 mass[i] = (byte)(arr[i] ^ key);
             }
-            encryptString = Encoding.UTF8.GetString(mass);
+            encryptString = Encoding.Unicode.GetString(mass);
             return encryptString;
         }
         public static string DecryptWithKey(string encryptString, int key)
         {
             string decryptString;
-            byte[]arr = Encoding.UTF8.GetBytes(encryptString);
+            byte[]arr = Encoding.Unicode.GetBytes(encryptString);
             decryptString = Encrypt(arr, key);
             return decryptString;
         }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="CezarEncryprtDecrypt" Height="450" Width="800"
         ResizeMode="NoResize"
         >
     <Grid Background="AliceBlue">
@@ -17,5 +17,8 @@
         <Button Visibility="Hidden" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="15" Click="BtnClickBack" Name="btnBack" Width="70"></Button>
         <TextBlock Text="Программа для работы с шифром цезаря" Grid.Row="0" FontSize="24" FontStyle="Italic" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Frame ContentRendered="MainFrameRendered" Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row ="1"></Frame>
+        <ToolBar Width="100" Header="Помощь" VerticalAlignment="Top" HorizontalAlignment="Left">
+            
+        </ToolBar>
     </Grid>
 </Window>
