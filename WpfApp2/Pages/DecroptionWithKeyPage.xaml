@@ -11,7 +11,18 @@
       >
 
     <Grid>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="62*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  HorizontalAlignment="Right">
+            <TextBlock Text="Выбирете  язык строки для шифрования: " Margin="0 0 20 0" VerticalAlignment="Center"></TextBlock>
+            <ComboBox SelectionChanged="SelectLang" Name="languageCB" VerticalAlignment="Center" Margin="0 0 20 0" Background="#ADECED"  BorderBrush="#ADECED" >
+                <ComboBoxItem   IsSelected="True" Content="RU"></ComboBoxItem>
+                <ComboBoxItem  Content="EN"></ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
@@ -25,17 +36,20 @@
             <TextBlock Text="Строка для дешифрования:" Margin="0 0 20 0" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
             
             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <TextBox Name="decryptString" Width="250"   Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Height="33"></TextBox>
-                <Button VerticalContentAlignment="Top" Content="..." Name="btnFindString" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="33" Width="35" Padding="0" Margin="0" BorderThickness="0.6" BorderBrush="Gray" >
+                <TextBox TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True"  PreviewTextInput="TextInputString" Name="decryptString" Width="250"   Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Height="33"></TextBox>
+                <Button VerticalContentAlignment="Top" Content="..." Name="btnFindString" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="33" Width="35" Padding="0" Margin="0" BorderThickness="0.6" BorderBrush="Gray" Click="BtnClickInputStringFromFile">
+                    <Button.ToolTip>
+                        Вставить строку из файла.
+                    </Button.ToolTip>
                 </Button>
 
             </StackPanel>
 
-            <TextBlock  Text="Ключ:" Grid.Row="1" Margin="0 0 20 0"  VerticalAlignment="Center" HorizontalAlignment="Left"  ></TextBlock>
-            <TextBox Name="decryptKey" Width="70"   Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBox>
+            <TextBlock Text="Ключ:" Grid.Row="1" Margin="0 0 20 0"  VerticalAlignment="Center" HorizontalAlignment="Left"  ></TextBlock>
+            <TextBox MaxLength="9"  PreviewKeyDown="KeyDownBlockSpace" PreviewTextInput ="TextInputKey" Name="decryptKey" Width="70"   Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBox>
 
-            <TextBlock Visibility="Hidden" Name="encryptedTextBoxDescription" Text="Расшифрованная строка: " Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-            <TextBox IsReadOnly="True" BorderThickness="0" Visibility="Hidden" Name="encryptedTextValue"   Grid.Row="2" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Left"></TextBox>
+            <TextBlock Visibility="Hidden" Name="decryptedTextBoxDescription" Text="Расшифрованная строка: " Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+            <TextBox TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" BorderThickness="0.5"  IsReadOnly="True" Visibility="Hidden" Name="decryptedTextValue"   Grid.Row="2" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="270" Height="45"></TextBox>
 
             <Button Grid.Row="3"   VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0"  Padding="5" Height="70" Click="BtnClickDectyptSave">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
