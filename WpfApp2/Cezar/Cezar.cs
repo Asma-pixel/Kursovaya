@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace WpfApp2
 {
@@ -26,6 +22,7 @@ namespace WpfApp2
         }
         public static string Encrypt(string encrypyptString, int key, string lang)
         {
+            string tempEncrypt = encrypyptString.Trim();
             string alfabet;
             string resultString = "";
             if (lang == "RU")
@@ -33,9 +30,9 @@ namespace WpfApp2
             else 
                 alfabet = allEnAlfabet;
 
-            for (int i = 0; i < encrypyptString.Length; i++)
+            for (int i = 0; i < tempEncrypt.Length; i++)
             {
-                resultString += Repl(encrypyptString.Substring(i,1), key, alfabet);
+                resultString += Repl(tempEncrypt.Substring(i,1), key, alfabet);
             }
                 
       
@@ -43,6 +40,7 @@ namespace WpfApp2
         }
         public static string DecryptWithKey(string decrypyptString, int key, string lang)
         {
+            string tempDecrypt = decrypyptString.Trim();
             string resultString = Encrypt(decrypyptString, -key, lang);
             return resultString;
         }

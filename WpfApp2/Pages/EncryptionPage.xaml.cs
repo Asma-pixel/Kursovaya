@@ -1,6 +1,5 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,19 +17,20 @@ namespace WpfApp2.Pages
         {
             InitializeComponent();
             lang = "RU";
-            
-        }
 
+        }
         private void BtnClickEncryptSave(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (encryptString.Text == "")
+                if ((encryptString.Text == "" || encryptString.Text.Trim() == "") && encryptKey.Text == "")
+                    throw new Exception("Введите строку и ключ для шифрования");
+                if (encryptString.Text == "" || encryptString.Text.Trim() == "")
                     throw new Exception("Введите строку для шифрования");
                 if (encryptKey.Text == "")
                     throw new Exception("Введите ключ");
 
-                encryptedTextValue.Text = Cezar.Encrypt(encryptString.Text, Convert.ToInt32(encryptKey.Text), "RU");
+                encryptedTextValue.Text = Cezar.Encrypt(encryptString.Text, Convert.ToInt32(encryptKey.Text), lang);
                 encryptedTextValue.Visibility = Visibility.Visible;
                 encryptedTextBoxDescription.Visibility = Visibility.Visible;
                 SaveFileDialog save = new SaveFileDialog();
@@ -40,10 +40,74 @@ namespace WpfApp2.Pages
                 save.OverwritePrompt = true;
                 if (save.ShowDialog() == false)
                     return;
-                // получаем выбранный файл
                 string filename = save.FileName;
-                // сохраняем текст в файл
+
                 System.IO.File.WriteAllText(filename, encryptedTextValue.Text);
+            }
+            catch (Exception exc)
+            {
+                if (exc.Message.ToString().Contains("стр"))
+                    encryptString.Text = "";
+                if (exc.Message.ToString().Contains("Значение"))
+                    encryptKey.Text = "";
+                MessageBox.Show(exc.Message.ToString(), "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+        }
+
+        private void BtnClickEncryptWithOutSave(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if ((encryptString.Text == "" || encryptString.Text.Trim() == "") && encryptKey.Text == "")
+                    throw new Exception("Введите строку и ключ для шифрования");
+                if (encryptString.Text == "" || encryptString.Text.Trim() == "")
+                    throw new Exception("Введите строку для шифрования");
+                if (encryptKey.Text == "")
+                    throw new Exception("Введите ключ");
+
+                encryptedTextValue.Text = Cezar.Encrypt(encryptString.Text, Convert.ToInt32(encryptKey.Text), lang);
+                encryptedTextValue.Visibility = Visibility.Visible;
+                encryptedTextBoxDescription.Visibility = Visibility.Visible;
+            }
+            catch (Exception exc)
+            {
+                if (exc.Message.ToString().Contains("стр"))
+                    encryptString.Text = "";
+                if (exc.Message.ToString().Contains("Значение"))
+                    encryptKey.Text = "";
+
+                MessageBox.Show(exc.Message.ToString(), "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+           
+        }
+
+        private void BtnClickInputStringFromFile(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string checkLang = "";
+                Regex rgx;
+                if (lang == "EN")
+                {
+                    rgx = new Regex(@"[а-яА-Я]");
+                    checkLang = "русского";
+                }
+
+                else
+                {
+                    rgx = new Regex(@"[a-zA-Z]");
+                    checkLang = "английского";
+                }     
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                if (openFileDialog.ShowDialog() == false)
+                    return;
+                string filename = openFileDialog.FileName;
+                string fileText = System.IO.File.ReadAllText(filename);
+                if (rgx.IsMatch(fileText))
+                    throw new Exception($"В файле встречаются символы {checkLang} языка");
+                encryptString.Text = fileText;
             }
             catch (Exception exc)
             {
@@ -51,30 +115,6 @@ namespace WpfApp2.Pages
                 MessageBox.Show(exc.Message.ToString(), "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             
-        }
-
-        private void BtnClickEncryptWithOutSave(object sender, RoutedEventArgs e)
-        {
-            encryptedTextValue.Text = Cezar.Encrypt(encryptString.Text, Convert.ToInt32(encryptKey.Text), "RU");
-            encryptedTextValue.Visibility = Visibility.Visible;   
-            encryptedTextBoxDescription.Visibility = Visibility.Visible;  
-        }
-
-        private void BtnClickInputStringFromFile(object sender, RoutedEventArgs e)
-        {
-            encryptedTextValue.Text = Cezar.Encrypt(encryptString.Text, Convert.ToInt32(encryptKey.Text), "RU");
-            encryptedTextValue.Visibility = Visibility.Visible;   
-            encryptedTextBoxDescription.Visibility = Visibility.Visible;
-            SaveFileDialog save = new SaveFileDialog();
-            save.Filter = "Text files(*.txt)|*.txt|";
-            save.CreatePrompt = true;
-            save.Title = "asdfa";
-            save.OverwritePrompt = true;
-            save.ShowDialog();
-            // получаем выбранный файл
-            string filename = save.FileName;
-            // сохраняем текст в файл
-            System.IO.File.WriteAllText(filename, encryptedTextValue.Text);
         }
 
         private void TextInputString(object sender, System.Windows.Input.TextCompositionEventArgs e)
@@ -103,7 +143,7 @@ namespace WpfApp2.Pages
                 lang  = selectedItem.Content.ToString();
                 
         }
-
+     
         private void TextInputKey(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             Regex rgx = new Regex(@"\d");
@@ -113,5 +153,9 @@ namespace WpfApp2.Pages
                 e.Handled = false;
         }
 
+        private void KeyDownBlockSpace(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            e.Handled = e.KeyboardDevice.IsKeyDown(System.Windows.Input.Key.Space);
+        }
     }
 }

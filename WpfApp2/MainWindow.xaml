@@ -7,12 +7,14 @@
         mc:Ignorable="d"
         Title="CezarEncryprtDecrypt" Height="550" Width="800"
         ResizeMode="NoResize"
+        Icon="/Resources/laurel32.png"
         >
     <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Image Source="/Resources/logo.png" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="80" Height="80" Margin="20 0"/>
         <Button Visibility="Hidden" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,16,0" Click="BtnClickBack" Name="btnBack" Width="auto" Padding="15 7"></Button>
         <TextBlock Text="Программа для работы с шифром цезаря" FontSize="24" FontStyle="Italic" VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="466"/>
         <Frame ContentRendered="MainFrameRendered" Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0,98,0,0" Grid.RowSpan="2"/>
