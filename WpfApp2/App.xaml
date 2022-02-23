@@ -23,6 +23,7 @@
             <Setter Property="FontStyle" Value="Italic"></Setter>
             <Setter Property="Padding" Value="0 5"></Setter>
             <Setter Property="BorderThickness" Value="0.8"></Setter>
+            <Setter Property="Background" Value="AliceBlue"></Setter>
         </Style>
     </Application.Resources>
 </Application>

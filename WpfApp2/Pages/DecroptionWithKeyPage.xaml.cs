@@ -47,6 +47,7 @@ namespace WpfApp2.Pages
                 string filename = save.FileName;
            
                 System.IO.File.WriteAllText(filename, decryptedTextValue.Text);
+                GridRowWithSttring.Height = new GridLength(5, GridUnitType.Star);
             }
             catch (Exception exc)
             {
@@ -72,6 +73,7 @@ namespace WpfApp2.Pages
                 decryptedTextValue.Text = Cezar.DecryptWithKey(decryptString.Text, Convert.ToInt32(decryptKey.Text), lang);
                 decryptedTextValue.Visibility = Visibility.Visible;
                 decryptedTextBoxDescription.Visibility = Visibility.Visible;
+                GridRowWithSttring.Height = new GridLength(5, GridUnitType.Star);
             }
             catch (Exception exc)
             {

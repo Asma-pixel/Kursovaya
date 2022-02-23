@@ -69,6 +69,8 @@ namespace WpfApp2.Pages
                 encryptedTextValue.Text = Cezar.Encrypt(encryptString.Text, Convert.ToInt32(encryptKey.Text), lang);
                 encryptedTextValue.Visibility = Visibility.Visible;
                 encryptedTextBoxDescription.Visibility = Visibility.Visible;
+
+                GridRowWithSttring.Height = new GridLength(5, GridUnitType.Star);
             }
             catch (Exception exc)
             {
