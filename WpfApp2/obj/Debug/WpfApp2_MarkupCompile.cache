@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Serafim\source\repos\cezarV2\WpfApp2\App.xaml
-4752580665
+51139025785
 
-101167019933
+111327438197
 14-1714165620
-MainWindow.xaml;Pages\DecroptionWithKeyPage.xaml;Pages\EncryptionPage.xaml;Pages\SelectionPage.xaml;
+MainWindow.xaml;Pages\DecroptionWithKeyPage.xaml;Pages\DecryptionWithOutKey.xaml;Pages\EncryptionPage.xaml;Pages\SelectionPage.xaml;
 
 False
 

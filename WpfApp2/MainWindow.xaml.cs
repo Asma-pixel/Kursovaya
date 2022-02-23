@@ -14,6 +14,8 @@ namespace WpfApp2
             InitializeComponent();
             Manager.MainFrame = MainFrame;
             Manager.MainFrame.Navigate(new SelectionPage());
+            Cezar.DecryptWithoutKey("привет мир", "RU");
+            MessageBox.Show(Cezar.DecryptWithoutKey("Идейные соображения высшего порядка, нашей деятельности влечет за собой процесс внедрения и модернизации системы обучения кадров,соответствуетнасущнымотребностям.Разнообразныйибогатыйопытпостоянное", "RU"));
         }
 
         private void BtnClickBack(object sender, RoutedEventArgs e)

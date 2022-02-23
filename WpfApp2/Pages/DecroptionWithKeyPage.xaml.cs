@@ -31,6 +31,14 @@ namespace WpfApp2.Pages
                 if (decryptKey.Text == "")
                     throw new Exception("Введите ключ");
 
+                Regex rgx;
+                if (lang == "EN")
+                    rgx = new Regex(@"[а-яА-Я]");
+                else
+                    rgx = new Regex(@"[a-zA-Z]");
+                if (rgx.IsMatch(decryptString.Text))
+                    throw new Exception("Введите строку на нужном языке");
+
                 decryptedTextValue.Text = Cezar.DecryptWithKey(decryptString.Text, Convert.ToInt32(decryptKey.Text), lang);
                 decryptedTextValue.Visibility = Visibility.Visible;
                 decryptedTextBoxDescription.Visibility = Visibility.Visible;
@@ -69,6 +77,14 @@ namespace WpfApp2.Pages
                     throw new Exception("Введите строку для дешифрования");
                 if (decryptKey.Text == "")
                     throw new Exception("Введите ключ");
+
+                Regex rgx;
+                if (lang == "EN")
+                    rgx = new Regex(@"[а-яА-Я]");
+                else
+                    rgx = new Regex(@"[a-zA-Z]");
+                if (rgx.IsMatch(decryptString.Text))
+                    throw new Exception("Введите строку на нужном языке");
 
                 decryptedTextValue.Text = Cezar.DecryptWithKey(decryptString.Text, Convert.ToInt32(decryptKey.Text), lang);
                 decryptedTextValue.Visibility = Visibility.Visible;

@@ -101,6 +101,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\DecryptionWithOutKey.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\EncryptionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,6 +118,9 @@
     <Compile Include="Manager\Manager.cs" />
     <Compile Include="Pages\DecroptionWithKeyPage.xaml.cs">
       <DependentUpon>DecroptionWithKeyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DecryptionWithOutKey.xaml.cs">
+      <DependentUpon>DecryptionWithOutKey.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\EncryptionPage.xaml.cs">
       <DependentUpon>EncryptionPage.xaml</DependentUpon>
