@@ -20,10 +20,10 @@ namespace WpfApp2.Pages
     /// <summary>
     /// Логика взаимодействия для DecryptionWithOutSave.xaml
     /// </summary>
-    public partial class DecryptionWithOutSave : Page
+    public partial class DecryptionWithOutKey : Page
     {
         private static string lang;
-        public DecryptionWithOutSave()
+        public DecryptionWithOutKey()
         {
             InitializeComponent();
             lang = "RU";
@@ -88,7 +88,7 @@ namespace WpfApp2.Pages
                 if (rgx.IsMatch(decryptString.Text))
                     throw new Exception("Введите строку на нужном языке");
 
-              
+                decryptedTextValue.Text = Cezar.DecryptWithoutKey(decryptString.Text, lang);
                 decryptedTextValue.Visibility = Visibility.Visible;
                 decryptedTextBoxDescription.Visibility = Visibility.Visible;
                 GridRowWithSttring.Height = new GridLength(5, GridUnitType.Star);

@@ -32,7 +32,8 @@ namespace WpfApp2.Pages
             switch(btn.Name)
             {
                 case "btnEncrypt": Manager.MainFrame.Navigate(new EncryptionPage());  break;
-                case "btnDecryptKey": Manager.MainFrame.Navigate(new DecroptionWithKeyPage()); break;   
+                case "btnDecryptKey": Manager.MainFrame.Navigate(new DecroptionWithKeyPage()); break;
+                case "btnDecryptWithOutKey": Manager.MainFrame.Navigate(new DecryptionWithOutKey()); break;
             }
            
         }

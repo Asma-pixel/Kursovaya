@@ -14,6 +14,7 @@
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Name="btnEncrypt" Content="Шифрование"  Click="BtnClickOpenPage" Width="250" ></Button>
             <Button Name="btnDecryptKey" Content="Дешифрование с ключом" Click="BtnClickOpenPage" Width="250"></Button>
+            <Button Name="btnDecryptWithOutKey" Content="Дешифрование без ключа" Width="250"  Click="BtnClickOpenPage"></Button>
 
         </StackPanel>
     </Grid>

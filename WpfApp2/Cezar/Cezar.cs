@@ -49,9 +49,19 @@ namespace WpfApp2
         public static string DecryptWithoutKey(string decrypyptString, string lang)
         {
             int key = 0;
-            string resultString = "";
-            resultString = decrypyptString.GroupBy(c => c).OrderByDescending(g => g.Count()).First().Key.ToString();
-            return resultString;
+            string symbol = "";
+            string resultString = "'";
+            symbol = decrypyptString.GroupBy(c => c).OrderByDescending(g => g.Count()).First().Key.ToString();
+            if (symbol == " ")
+            {
+                symbol = "S";
+            }
+            /*if (lang == "RU")
+                key = allRuAlfabet.IndexOf("о") - allRuAlfabet.IndexOf(symbol);
+            else
+                key = allEnAlfabet.IndexOf("e") - allEnAlfabet.IndexOf(symbol);
+            resultString = Cezar.Encrypt(decrypyptString, key, lang);*/
+            return resultString += symbol +"'";
         }
     }
 }
